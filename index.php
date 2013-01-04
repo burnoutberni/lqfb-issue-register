@@ -11,6 +11,8 @@ if($_POST['submit'] == "true") {
 	if($_POST['satzung'] == "satzung") {$satzung = 1; $checked_satzung = "checked";}
 } else {
 	$checked_programm = "checked";
+	$checked_go = "checked";
+	$checked_satzung = "checked";
 }
 ?>
 

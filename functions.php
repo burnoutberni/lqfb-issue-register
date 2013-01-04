@@ -1,12 +1,13 @@
 <?
 function new_issues($apiUrl, $since, $programm, $go, $satzung, $unitid) {
 	//Get issues
-	if(!isset($since)) {$since = "2013-01-01";}
-	if(!isset($areaid)) {$unitid = 1;}
+	$today = date('Y-m-d', time());
+	if(!isset($since)) {$since = $today;}
+	if(!isset($unitid)) {$unitid = 1;}
 	if($programm == 1) {$policy[] = 1;}
 	if($go == 1) {$policy[] = 5;}
 	if($satzung == 1) {$policy[] = 39;}
-	if(count($policy) == 0) {$policy[] = 1;}
+	if(count($policy) == 0) {$policy[] = "1";$policy[] = "5";$policy[] = "39";}
 	$policy_id = "&policy_id=".implode(",",$policy);
 	$url_issue = $apiUrl . "issue?issue_closed_after=".$since."T00:00:00&issue_state=finished_with_winner,finished_without_winner&unit_id=".$unitid.$policy_id;
 	$json_issue = json_decode(file_get_contents($url_issue),true);
